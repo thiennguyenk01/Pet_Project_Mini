@@ -1,0 +1,295 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background-image: linear-gradient(to bottom, rgb(75 124 153 / 50%), #cc95c0), url(./img/tc.jpg);
+  background-size: auto;
+  /* background: pink; */
+  background-position: center center;
+  background-attachment: fixed;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  /* background-size: contain; */
+  /* background-position: center center; */
+  background-repeat: no-repeat;
+  height: 100%;
+  backdrop-filter: blur(1px);
+}
+
+h1 {
+  font-size: 36px;
+  margin-top: 20px;
+  font-weight: bold;
+  background: linear-gradient(to right, #cc95c0, #dbd4b4, #7aa1d2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.banner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.banner-image {
+  width: 100%;
+  height: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  object-position: center;
+
+}
+
+.banner-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  margin-bottom: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  width: 60%;
+  min-height: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  position: relative;
+  /* overflow-y: auto; */
+  /* Cho phép cuộn dọc khi nội dung vượt quá */
+  max-height: calc(100vh - 40px);
+  /* Đảm bảo container không vượt quá chiều cao của viewport */
+  justify-content: flex-start;
+  /* Các phần tử con sẽ căn chỉnh từ trên xuống */
+  /* height: 100%; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+}
+
+
+.container1 {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+}
+
+h2 {
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+.mode {
+  font-size: 35px;
+  font-weight: bold;
+  background: linear-gradient(to right, #fff, #fff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.input-group {
+  font-size: 36px;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  margin: 5px;
+  color: #000;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(to right, #fff, #fff);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+input[type="text"]:hover {
+  border: 2px solid #ff86a1;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  /* background-color: #fff; */
+  background: transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  /* opacity: 0.3; */
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+
+  font-weight: bold;
+  font-size: 20px;
+  /* background: linear-gradient(to left, #abdcff, #0396ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color: #000;
+  border: 1px solid #000000;
+  background-color: transparent;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* opacity: 0.9; */
+}
+
+td {
+  vertical-align: top;
+}
+
+.gif,
+.gif1 {
+  width: 16%;
+  position: absolute;
+}
+
+.gif {
+  top: 0;
+  right: 25%;
+}
+
+.gif1 {
+  transform: rotateY(180deg);
+  object-fit: cover;
+}
+
+.gif1 {
+  position: absolute;
+  top: 0;
+  left: 25%;
+}
+
+.ngu-qua {
+  width: 50%;
+}
+
+#mode {
+  /* position: absolute; Đặt phần tử ở vị trí tuyệt đối trong container */
+  bottom: 0;
+  /* Đặt phần tử ở dưới cùng */
+  left: 50%;
+  /* Căn giữa theo chiều ngang */
+  box-sizing: border-box;
+  border-width: 2px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+  background: url(./img/phaohoa.gif);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  width: 100%;
+  /* Đảm bảo phần tử sẽ giãn ra khi cần */
+  padding: 10px 0;
+  /* Đảm bảo có khoảng cách trên dưới cho phần tử */
+}
+
+.dao {
+  top: 0;
+  position: absolute;
+  right: 0;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dao1 {
+  top: 0;
+  position: absolute;
+  left: 0;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dao1 {
+  transform: rotateY(180deg);
+  object-fit: cover;
+}
+
+#caudoitest1,
+#caudoitest2 {
+  position: fixed;
+  z-index: 999;
+  max-width: 100%;
+  height: auto;
+}
+
+#caudoitest1 {
+  top: 0;
+  left: 0%;
+  min-width: 10%;
+}
+
+@media screen and (max-width: 1560px) {
+  body {
+    background-size: cover;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+}
+
+#caudoitest2 {
+  top: 0;
+  right: 0%;
+  min-width: 10%;
+}
