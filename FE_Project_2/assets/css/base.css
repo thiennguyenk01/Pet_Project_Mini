@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+*::selection {
+    background-color: #FF589E;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    color: #1E1E1E;
+
+}
