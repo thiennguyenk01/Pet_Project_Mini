@@ -311,6 +311,49 @@
 .rest-arr-c:not(:last-child){border-right:1px solid rgba(255,255,255,.03)}
 .rest-no-body{padding:20px 16px;text-align:center;font-size:.78rem;color:var(--text-dim);font-style:italic;background:rgba(0,0,0,.15);border:1px solid var(--border);border-radius:10px;border-style:dashed}
 @media(max-width:640px){.rest-dia{flex-direction:column;gap:16px}.rest-fl{width:100%;height:120px;min-width:unset;margin:0}.rest-ep{margin-left:0;margin-top:8px}.rest-kv-key{width:120px;font-size:.65rem}.rest-kv-val{font-size:.65rem}}
+.rm{padding:2rem 1rem 3rem;position:relative}
+.rm .spine{position:absolute;left:50%;top:40px;bottom:60px;width:2px;background:var(--border-light);transform:translateX(-50%);z-index:0}
+.rm .phase-row{display:flex;align-items:flex-start;gap:0;position:relative;min-height:60px;margin-bottom:24px}
+.rm .phase-side{width:calc(50% - 16px);flex-shrink:0;display:flex}
+.rm .phase-side.left{justify-content:flex-end;padding-right:24px}
+.rm .phase-side.right{padding-left:24px}
+.rm .spine-dot{position:absolute;left:50%;top:20px;width:14px;height:14px;border-radius:50%;border:2px solid var(--bg);transform:translateX(-50%);z-index:2;flex-shrink:0;transition:transform .2s}
+.rm .phase-row:hover .spine-dot{transform:translateX(-50%) scale(1.2)}
+.rm .node-card{width:100%;max-width:280px;border:0.5px solid var(--border-light);border-radius:10px;overflow:hidden;background:var(--bg-card);transition:border-color .15s}
+.rm .node-card:hover{border-color:var(--accent)}
+.rm .node-header{display:flex;align-items:center;gap:8px;padding:11px 12px;cursor:pointer;user-select:none}
+.rm .node-num{font-size:10px;color:var(--text-muted);min-width:18px;font-variant-numeric:tabular-nums}
+.rm .node-title{flex:1;font-size:13px;font-weight:500;color:var(--text);line-height:1.3}
+.rm .node-chevron{font-size:10px;color:var(--text-muted);transition:transform .2s;flex-shrink:0}
+.rm .node-card.open .node-chevron{transform:rotate(180deg)}
+.rm .node-body{max-height:0;overflow:hidden;transition:max-height .3s ease;border-top:0 solid var(--border-light)}
+.rm .node-card.open .node-body{max-height:400px;border-top-width:.5px}
+.rm .lecture{display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:.5px solid var(--border-light);font-size:11px;color:var(--text)}
+.rm .lecture:last-child{border-bottom:none}
+.rm .lec-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.rm .h-conn{position:absolute;top:27px;height:.5px;background:var(--border-light);z-index:1}
+.rm .h-conn.left{right:50%;width:24px}
+.rm .h-conn.right{left:50%;width:24px}
+.rm .divider{position:relative;z-index:3;text-align:center;margin:4px 0 20px}
+.rm .divider span{display:inline-block;background:var(--bg-surface);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:500;letter-spacing:.06em}
+.rm .proj-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:1}
+.rm .proj-card{border:.5px solid var(--border-light);border-radius:10px;overflow:hidden;background:var(--bg-card);transition:border-color .15s}
+.rm .proj-card:hover{border-color:var(--accent)}
+.rm .proj-header{display:flex;align-items:center;gap:6px;padding:10px;cursor:pointer;user-select:none}
+.rm .proj-num{font-size:10px;color:var(--text-muted)}
+.rm .proj-title{flex:1;font-size:11px;font-weight:500;color:var(--text);line-height:1.3}
+.rm .proj-chev{font-size:10px;color:var(--text-muted);transition:transform .2s}
+.rm .proj-card.open .proj-chev{transform:rotate(180deg)}
+.rm .proj-body{max-height:0;overflow:hidden;transition:max-height .3s ease;border-top:0 solid var(--border-light)}
+.rm .proj-card.open .proj-body{max-height:200px;border-top-width:.5px}
+.section-tag.c0{background:rgba(34,211,238,.12);color:var(--accent)}
+@media(max-width:640px){
+    .rm{padding:1rem .5rem 2rem}
+    .rm .phase-side.left{padding-right:12px}
+    .rm .phase-side.right{padding-left:12px}
+    .rm .node-card{max-width:100%}
+    .rm .proj-row{grid-template-columns:1fr}
+}
 
 
     </style>
@@ -325,6 +368,15 @@
         <div><div class="sidebar-title">PyMaster</div><div class="sidebar-subtitle">Python thuần túy toàn diện</div></div>
     </div>
     <ul class="nav-list" id="navList">
+        <li class="nav-item has-children">
+            <a class="nav-link" data-section="0" onclick="toggleNav(this)">
+                <span class="nav-num">00</span>Python Mastery Roadmap
+                <span class="nav-arrow">&#9662;</span>
+            </a>
+            <ul class="nav-children">
+                <li><a class="nav-child-link" href="#sub-0-roadmap" onclick="goToSub(event,0,'sub-0-roadmap',this)">Roadmap tổng quan</a></li>
+            </ul>
+        </li>
         <li class="nav-item has-children">
             <a class="nav-link active" data-section="1" onclick="toggleNav(this)">
                 <span class="nav-num">01</span>Kiểu dữ liệu, Vòng lặp, Hàm, Toán tử
@@ -493,6 +545,350 @@
         </div>
     </div>
     <div class="lessons">
+
+        <!-- ==================== PHẦN 0 ==================== -->
+    <section class="lesson-section" id="part-0">
+    <div class="section-head">
+        <span class="section-tag c0">Part 0</span>
+        <h2>The Ultimate Python Mastery</h2>
+        <p>Lộ trình học Python toàn diện — từ Getting Started đến các dự án thực tế.</p>
+    </div>
+    <div class="sub-section" id="sub-0-roadmap">
+        <div class="sub-section-title">Roadmap tổng quan</div>
+        <div class="lesson-card" style="padding:0;overflow:hidden">
+            <div class="rm">
+                <div class="spine"></div>
+
+                <div style="text-align:center;position:relative;z-index:2;margin-bottom:28px">
+                    <div style="display:inline-block;background:var(--bg-surface);border:0.5px solid var(--border-light);border-radius:20px;padding:6px 18px;font-size:12px;font-weight:500;color:var(--text)">The Ultimate Python Mastery</div>
+                </div>
+
+                <!-- 01 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">01</span><span class="node-title">Getting Started</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Python Course Introduction</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Course Materials</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Python Roadmap</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>What is Python</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>How Python Works</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#1D9E75"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <!-- 02 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#1D9E75"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">02</span><span class="node-title">Python Basic Tools</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Comments</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Print</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Escape Sequences</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Print - Challenge</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Variables</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">03</span><span class="node-title">Data Types</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Data Types</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Data Type Categories</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Data Type Classes</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Data Types Examples</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Python Challenge</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#1D9E75"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <!-- 04 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#1D9E75"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">04</span><span class="node-title">Working with Strings</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Chapter Introduction</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Strings</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Type Function</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>String Operators</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Replace</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">05</span><span class="node-title">Working with Numbers</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Numbers</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Number Types</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Number Operators</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Rounding</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#1D9E75"></div>Random</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#1D9E75"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <div class="divider"><span style="border:0.5px solid #378ADD44;color:#185FA5">LOGIC &amp; CONTROL FLOW</span></div>
+
+                <!-- 06 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#378ADD"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">06</span><span class="node-title">Logic &amp; Operators</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Introduction To Chapter</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Control Flow</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Working with Boolean</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Comparison Operators</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Logical Operators</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 07 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">07</span><span class="node-title">Conditional Statements</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Introduction to Chapter</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Conditional Statement If</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Indentation</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Else</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Elif</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#378ADD"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <!-- 08 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#378ADD"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">08</span><span class="node-title">For Loops</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>Python Loops</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>For Loop</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>For Loop in Sequences</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>For Loop Use Cases</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>For Loop - Challenge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 09 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">09</span><span class="node-title">While Loops</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>While Loop</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>While Condition</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>While True</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>While Condition vs While True</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#378ADD"></div>For vs While</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#378ADD"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <div class="divider"><span style="border:0.5px solid #BA751744;color:#854F0B">DATA STRUCTURES</span></div>
+
+                <!-- 10 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#BA7517"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">10</span><span class="node-title">Lists — Fundamentals</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Data Structures</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>List Methods</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Creating Lists</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Nested Lists</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Indexing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">11</span><span class="node-title">Lists — Advanced</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Copying Lists</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Shallow Copy</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Deep Copy</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Copying Lists Review</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Combining Lists</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#BA7517"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <!-- 12 RIGHT -->
+                <div class="phase-row">
+                    <div class="phase-side left"></div>
+                    <div class="spine-dot" style="background:#BA7517"></div>
+                    <div class="h-conn right"></div>
+                    <div class="phase-side right">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">12</span><span class="node-title">Data Structures</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Lists</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Tuples</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Sets</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Set Methods</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#BA7517"></div>Set Math Operations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"><span style="border:0.5px solid #7F77DD44;color:#534AB7">FUNCTIONS</span></div>
+
+                <!-- 13 LEFT -->
+                <div class="phase-row">
+                    <div class="phase-side left">
+                        <div class="node-card">
+                            <div class="node-header" onclick="togRm(this.closest('.node-card'))">
+                                <span class="node-num">13</span><span class="node-title">Functions</span><span class="node-chevron">▾</span>
+                            </div>
+                            <div class="node-body">
+                                <div class="lecture"><div class="lec-dot" style="background:#7F77DD"></div>Python Functions</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#7F77DD"></div>Function Types</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#7F77DD"></div>How Functions Work</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#7F77DD"></div>Functions Examples</div>
+                                <div class="lecture"><div class="lec-dot" style="background:#7F77DD"></div>Parameters &amp; Arguments</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spine-dot" style="background:#7F77DD"></div>
+                    <div class="h-conn left"></div>
+                    <div class="phase-side right"></div>
+                </div>
+
+                <div class="divider"><span style="border:0.5px solid #D85A3044;color:#993C1D">PROJECTS</span></div>
+
+                <!-- branch lines -->
+                <div style="position:relative;z-index:1">
+                    <div style="display:flex;justify-content:center;height:16px"><div style="width:2px;background:var(--border-light)"></div></div>
+                    <div style="position:relative;height:14px;margin:0 16px">
+                        <div style="position:absolute;top:0;left:calc(16.5%);right:calc(16.5%);height:0.5px;background:var(--border-light)"></div>
+                        <div style="position:absolute;top:0;left:calc(16.5%);width:0.5px;height:14px;background:var(--border-light)"></div>
+                        <div style="position:absolute;top:0;left:50%;width:0.5px;height:14px;background:var(--border-light);transform:translateX(-50%)"></div>
+                        <div style="position:absolute;top:0;right:calc(16.5%);width:0.5px;height:14px;background:var(--border-light)"></div>
+                    </div>
+                </div>
+
+                <div class="proj-row" style="margin-top:0">
+                    <div class="proj-card">
+                        <div class="proj-header" onclick="togRm(this.closest('.proj-card'))">
+                            <span class="proj-num">14</span><span class="proj-title">User Registration System</span><span class="proj-chev">▾</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Requirements</div>
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Solution</div>
+                        </div>
+                    </div>
+                    <div class="proj-card">
+                        <div class="proj-header" onclick="togRm(this.closest('.proj-card'))">
+                            <span class="proj-num">15</span><span class="proj-title">Expense Tracking System</span><span class="proj-chev">▾</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Requirements</div>
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Solution</div>
+                        </div>
+                    </div>
+                    <div class="proj-card">
+                        <div class="proj-header" onclick="togRm(this.closest('.proj-card'))">
+                            <span class="proj-num">16</span><span class="proj-title">Mini Banking System</span><span class="proj-chev">▾</span>
+                        </div>
+                        <div class="proj-body">
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Requirements</div>
+                            <div class="lecture"><div class="lec-dot" style="background:#D85A30"></div>Project Solution</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
 
 <!-- ==================== PHẦN 1 ==================== -->
 <section class="lesson-section active" id="part-1">
@@ -8669,6 +9065,8 @@ function restRun(m){
   setTimeout(()=>{clC.classList.remove('snd');void clC.offsetWidth;clC.classList.add('rcv');sf.textContent=a.st;sf.className='rest-sf show';rp.classList.add('show')},3500);
   setTimeout(()=>{fs.className='rest-fb res';fs.style.opacity='0';sf.className='rest-sf';clC.classList.remove('rcv');svC.classList.remove('rcv');tap.classList.remove('hide');restTimers[m]=false},6500);
 }
+function togRm(card) { card.classList.toggle('open'); }
+
 
 
 </script>
